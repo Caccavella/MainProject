@@ -1,0 +1,138 @@
+.App {
+  text-align: left;
+  width: 100vw;
+  background: linear-gradient(to left, #263238, #37474F, #455A64);
+}
+.pagecontainer {
+  width: 100vw;
+}
+
+.App-logo {
+  animation: App-logo-spin 1200s infinite alternate-reverse;
+  color: white;
+  height: 40px;
+  padding: 5px 5px 5px 5px;
+  box-shadow: 3px 3px 3px 3px #212121;
+}
+
+.App-header {
+  background: linear-gradient(to left, #263238, #37474F, #455A64);
+  height: 5vh;
+  width: 100vw;
+  padding: 20px;
+  color: white;
+}
+
+.savebutton {
+  border-radius: 10px;
+  width: 100px;
+  height: 25px;
+  color: black;
+  background-image: linear-gradient(circle at 50% -40%, #37474F, #084A11);
+}
+
+.logoutbutton {
+  width: 100px;
+  font-weight: bold;
+  color: #392F21;
+  border-radius: 10px;
+  background-image: radial-gradient(circle at 50% -46%, #8E7373, #403d39);
+  box-shadow: inset 0 1px 3px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+}
+.logoutbutton:hover {
+  background-image: radial-gradient(circle at 50% -43%, #A88686, #5A5650);
+  box-shadow: inset 0 2px 3px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+  transform: scale(1.002);
+}
+
+.inputurls {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  padding-left: 30%;
+  align-items: center;
+}
+.inputurls h2 {
+  color: whitesmoke;
+}
+
+.checkbox {
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+.App-intro {
+  border-top: 1px inset #CFD8DC;
+  font-size: large;
+  padding-top: 5px;
+  padding-left: 5vw;
+  color: #E0E0E0;
+}
+
+.cardlist {
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: 20%;
+}
+.cardsleft {
+  width: 70%;
+  margin-left: 20px;
+}
+.cardsright {
+  width: 70%;
+  margin-left: 20px;  
+  margin-right: 20px;
+  flex-basis: 40%;
+}
+.card {
+}
+
+.logout {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 60px;
+}
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+.gobutton {
+  color: whitesmoke;
+  height: 50px;
+  width: 250px;
+  border-radius: 10px;
+  background-image: radial-gradient(circle at 50% -46%, #6B6660, #084A12);
+}
+.gobutton:hover {
+  background-image: radial-gradient(circle at 50% -48%, #958D84, #086D17);
+  color: white;
+  font-size: 14px;
+  transform: scale(1.06);
+}
+
+@keyframes App-logo-spin {
+  from { transform: translateX(80%); }
+  to { transform: translateX(5%); }
+}
+
+@media(min-width: 500px) {
+  .App-logo {
+    height: 50px
+  }
+  .App-header {
+    height: 7vh;
+  }
+}
+@media(min-width: 750px) {
+  .App-logo {
+    height: 60px
+  }
+  .App-header {
+    height: 9vh;
+  }
+}
