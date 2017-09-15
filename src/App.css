@@ -89,6 +89,10 @@
 }
 .card {
 }
+.newurls {
+  color: #D9D6D6;
+  align-items: center;
+}
 
 .logout {
   display: flex;

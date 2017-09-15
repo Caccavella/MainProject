@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../../App.css'
+import '../../App.css';
 import Header from '../Header/Header';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ScholasticCard from '../cards/education/scholasticcard';
@@ -15,7 +15,7 @@ import { getUserInfo } from '../../ducks/reducer';
 import { Link } from 'react-router-dom';
 import { onEnter } from '../functions';
 
-var renderList= 'firstUrl';
+
 
 class URLS extends Component {
     constructor() {
@@ -24,7 +24,9 @@ class URLS extends Component {
             toSave: '',
             urlList: []
         }
+        this.handleChange = this.handleChange.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.saveCardUrls = this.saveCardUrls.bind(this);
     }
 
     componentDidMount() {
@@ -38,13 +40,16 @@ class URLS extends Component {
     handleSave() {
         this.urlList = this.state.urlList
         console.log(this.state.toSave);
-        if(this.state.toSave !== "") {
+        if (this.state.toSave !== "" && this.state.urlList.length < 20) {
             this.urlList.push(this.state.toSave);
         } else {
-            alert("Please enter a URL");
+            alert("Please enter a valid URL, or delete a previously entered URL.");
         }
-            console.log(this.urlList);
-      }
+        this.setState({
+            toSave: ''
+        })
+        console.log(this.urlList);
+    }
 
     //   handleRequestDelete(key) {
     //     this.urlList = this.state.urlList;
@@ -52,15 +57,36 @@ class URLS extends Component {
     //     this.urlList.splice(urlToDelete, 1);
     //     this.setState({urlList: this.urlList});
     //   };
-    renderUrls(){
-     
-        for(let i = 0; i < this.state.urlList.length; i++) {
-            return renderList = this.state.urlList[i];
+    saveCardUrls(param1, param2) {
+        console.log("param2", param2)
+        let url = this.state.urlList;
+        console.log('url', url)
+        if (param1) {
+            url.push(param2)
+            this.setState ({
+                urlList: url
+            })
+        } else if (!param1) {
+          let unChecked = this.state.urlList.filter(function(str){ return str !== param2; });
+            this.setState ({
+                urlList: unChecked
+            })
         }
-    }  
+
+    }
 
 
     render() {
+        // eslint-disable-next-line
+        var urls = this.state.urlList.map((e, i) => {
+            while (i < 20) {
+                return (
+                    <div key={i} >
+                        {e}
+                    </div>
+                )
+            }
+        })
         return (
             <div className="pagecontainer">
                 <div className="headercontainer">
@@ -70,53 +96,54 @@ class URLS extends Component {
                     <div className="cardlist">
                         <div className="cardsleft">
                             <div className="card">
-                                <ESPNCard />
+                                <ESPNCard saveCardUrls={this.saveCardUrls} />
                             </div>
                             <br />
                             <div className="card">
-                                <TechCrunchCard />
+                                <TechCrunchCard saveCardUrls={this.saveCardUrls} />
                             </div>
                             <br />
                             <div className="card">
-                                <ScholasticCard />
+                                <ScholasticCard saveCardUrls={this.saveCardUrls} />
                             </div>
                             <br />
                             <div className="card">
-                                <GmailCard />
+                                <GmailCard saveCardUrls={this.saveCardUrls} />
                             </div>
                         </div>
                         <div className="cardsright">
                             <br />
                             <div className="card">
-                                <TMZCard />
+                                <TMZCard saveCardUrls={this.saveCardUrls} />
                             </div>
                             <br />
                             <div className="card">
-                                <TwitchCard />
+                                <TwitchCard saveCardUrls={this.saveCardUrls} />
                             </div>
                             <br />
                             <div className="card">
-                                <CNNCard />
+                                <CNNCard saveCardUrls={this.saveCardUrls} />
                             </div>
                         </div>
                     </div>
                 </MuiThemeProvider>
                 <div className="inputurls">
                     <h2>Input Custom URLs here:</h2>
-                    <input id="search" onKeyPress={(event, cb) => onEnter(event, this.handleSave)} onChange={(e) => this.handleChange(e.target.value)} placeholder="URL to be saved"></input>
+                    <h4>(Limit of 20 total urls will be used)</h4>
+                    <input id="search" value={this.state.toSave} onKeyPress={(event, cb) => onEnter(event, this.handleSave)} onChange={(e) => this.handleChange(e.target.value)} placeholder="URL to be saved"></input>
                     <br />
                     <button className="savebutton" type="button" onClick={() => this.handleSave()}>Save</button>
                     <br />
 
-***
-                <div className="">
-                    {renderList}
+                    <div className="newurls">
+                        ***
+                    {urls}
+                        ***
                 </div>
-***
 
                 </div>
                 <div className="button-container">
-                    <Link to='/complete'><button className="gobutton">Go!</button></Link>
+                    <Link to='/complete'><button className="gobutton" onClick={() => console.log('urlList: ', this.state.urlList)}>Go!</button></Link>
                 </div>
             </div>
         )
